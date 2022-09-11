@@ -1,0 +1,9 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Категорії{% endblock %}
+
+{% block content %}
+{% for category in categories %}
+    <div>{{ category.title }}</div>
+{% endfor %}
+{% endblock %}

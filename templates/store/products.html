@@ -1,0 +1,15 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Страви{% endblock %}
+
+{% block content %}
+<div>Dishes</div>
+{% for product in products %}
+<div>{{ product }}</div>
+{% endfor %}
+
+<div>Categories</div>
+{% for category in categories %}
+<div>{{ category }}</div>
+{% endfor %}
+{% endblock %}
