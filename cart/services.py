@@ -1,7 +1,12 @@
 from django.db.models import F
+from django.shortcuts import get_object_or_404
 
 from store.services import get_active_product_by_slug
 from .models import Cart, CartItem
+
+
+def get_cart_or_404(user):
+    return get_object_or_404(Cart, user=user)
 
 
 def get_cart(user):
@@ -11,6 +16,15 @@ def get_cart(user):
     '''
     cart = Cart.objects.get_or_create(user=user)
     return cart[0]
+
+def get_cart_by_session_key(session_key):
+    cart = Cart.objects.get_or_create(session_key=session_key)
+    return cart[0]
+
+def get_cart_item_or_404(cart, slug):
+    items = cart.items.filter(product__slug=slug)
+    if items.exists():
+        return items[0]
 
 
 def get_item_or_bind_to_cart(cart, slug):

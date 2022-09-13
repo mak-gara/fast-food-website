@@ -1,0 +1,20 @@
+.carts {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.item {
+    display: flex;
+    column-gap: 20px;
+    padding: 20px;
+    border: 1px solid #000;
+}
+
+.cart__item {}
+
+.item__column {}
+
+.item__title {}
+
+.item__value {}

@@ -47,8 +47,10 @@ class Cart(models.Model):
     '''Shopping cart model'''
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE)
+                                on_delete=models.CASCADE,
+                                blank=True, null=True)
     items = models.ManyToManyField(CartItem, blank=True)
+    session_key = models.CharField(max_length=40, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     ordered_at = models.DateTimeField(blank=True, null=True)
     is_ordered = models.BooleanField(default=False)
