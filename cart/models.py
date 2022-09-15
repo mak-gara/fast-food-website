@@ -56,7 +56,11 @@ class Cart(models.Model):
     is_ordered = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.user.username
+        if self.user:
+            return self.user.username
+        else:
+            print("\n\n\n\n\n", self.session_key)
+            return self.session_key
 
     def get_total_price(self):
         '''

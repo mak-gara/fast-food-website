@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView
 from django.shortcuts import redirect
 
-from .services import get_cart, get_cart_by_session_key, get_cart_item_or_404, get_cart_or_404, get_item_or_bind_to_cart, increase_item_quantity
+from .services import check_item, get_cart, create_item_and_add_to_cart, get_cart_item_or_404, get_cart_or_404, increase_item_quantity, decrease_item_quantity, remove_item_from_cart
 
 
 class CartPageTemplateView(TemplateView):
@@ -9,33 +9,33 @@ class CartPageTemplateView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        if self.request.user.is_authenticated:
-            cart = get_cart_or_404(self.request.user)
-        else:
-            cart = get_cart_by_session_key(self.request.session.session_key)
+        cart = get_cart(self.request)
         context['cart'] = cart
         context['cart_items'] = cart.items.all()
         return context
 
 
 def add_to_cart(request, slug):
-    if request.user.is_authenticated:
-        cart = get_cart(request.user)
+    cart = get_cart(request)
+    item = check_item(cart, slug)
+    if item:
+        increase_item_quantity(item)
     else:
-        cart = get_cart_by_session_key(request.session.session_key)
-    item = get_item_or_bind_to_cart(cart, slug)
-    if not item[1]:
-        increase_item_quantity(item[0])
+        create_item_and_add_to_cart(cart, slug)
     return redirect('cart:cart')
 
 
 def remove_from_cart(request, slug):
     cart = get_cart_or_404(request.user)
     item = get_cart_item_or_404(cart, slug)
-    cart.items.remove(item)
+    remove_item_from_cart(cart, item)
     return redirect('cart:cart')
 
 
 def reduse_quantity_item(request, slug):
     cart = get_cart_or_404(request.user)
+    item = get_cart_item_or_404(cart, slug)
+    quantity = decrease_item_quantity(item)
+    if quantity == 0:
+        remove_item_from_cart(cart, item)
     return redirect('cart:cart')

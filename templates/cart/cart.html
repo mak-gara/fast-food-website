@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="container">
-    Is user authenticated? - {{ request.user.is_authenticated }}
+    Is user authenticated? - {{ request.user.is_authenticated }} - {{ request.session.session_key }}
     <div class="carts">
         {% for cart_item in cart_items %}
         <div class="item cart__item">
