@@ -1,0 +1,268 @@
+/* Homepage */
+
+/* Categories */
+.main__categories {
+    margin: 45px 0 28px;
+}
+
+.categories_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 192px);
+    justify-items: center;
+    grid-gap: 52px;
+}
+
+.category-card {
+    transition: transform x 80ms linear;
+}
+
+.categories__category-card {
+}
+
+.category-card:hover {
+    transform: scale(1.1);
+}
+
+.category-card__img {
+    margin-bottom: 8px;
+    height: 130px;
+    min-width: 192px;
+}
+
+.category-card__img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.category-card__title {
+    text-align: center;
+}
+
+.category-card__title a {
+    color: #000000;
+}
+
+/* Image Slider */
+.main__carousel {
+    margin-bottom: 60px;
+}
+
+.image-slider__image {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.image-slider__image img {
+    width: 100%;
+    max-height: 385px;
+    object-fit: cover;
+}
+
+/* Recommendations */
+.main__recomend {
+    margin-bottom: 88px;
+}
+
+.title {
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 37px;
+    color: #333333;
+}
+
+.recomend__title {
+    margin-bottom: 24px;
+}
+
+.recomend-slider__slide {
+    margin-bottom: 9px;
+}
+
+.food-card {
+    width: 245px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.food-card__image {
+    margin-bottom: 33px;
+}
+
+.food-card__image img {
+    width: 100%;
+    height: 153px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.food-card__body {
+    padding: 0 12px;
+}
+
+.food-card__title {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 32px;
+}
+
+.food-card__title a {
+    color: #333333;
+}
+
+.food-card__quantity-weight {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    color: #B1B1B1;
+    margin-bottom: 17px;
+}
+
+.food-card__text {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    color: #737373;
+    margin-bottom: 38px;
+}
+
+.food-card__price {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 22px;
+    color: #333333;
+    margin-bottom: 26px;
+}
+
+.btn {
+    border: 1px solid #8C9F3F;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.btn a {
+    display: inline-block;
+    padding: 11px 72px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #8C9F3F;
+}
+
+.food-card__btn {
+    margin-bottom: 19px;
+}
+
+/* About Us */
+.main__about-us {
+    margin-bottom: 80px;
+}
+
+.about-us__title {
+    margin-bottom: 24px;
+}
+
+.about-us__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 100px;
+}
+
+.about-us__image {
+    flex: 0 0 470px;
+    height: 313px;
+}
+
+.about-us__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 10px;
+}
+
+.about-us__text {
+    flex: 1 1 auto;
+}
+
+.about-us__block1 {
+    margin-bottom: 25px;
+}
+
+.middle-title {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.about-us__middle-title {
+    margin-bottom: 22px;
+}
+
+.text {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    color: #737373;
+}
+
+/* Delivery and Payment */
+.main__delivery {
+    margin-bottom: 92px;
+}
+
+.delivery__title {
+    margin-bottom: 24px;
+}
+
+.delivery__middle-title {
+    margin-bottom: 24px;
+}
+
+.delivery__list {
+    padding-left: 13px;
+    max-width: 920px;
+    margin-bottom: 20px;
+}
+
+.delivery__item {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    color: #737373;
+    margin-bottom: 13px;
+    position: relative;
+    padding-left: 30px;
+}
+
+.delivery__item:last-child {
+    margin: 0;
+}
+
+.delivery__item::before {
+    content: url("../img/icons/star.svg");
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.pickup {
+    border: 1px solid rgba(115, 115, 115, 0.44);
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 11px 19px;
+}
+
+.pickup__title {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    margin-bottom: 8px;
+}
+
+/* End Homepage */

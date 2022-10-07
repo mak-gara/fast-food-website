@@ -1,13 +1,16 @@
 from django.views.generic import TemplateView, ListView, DetailView
 
-from store.models import Category
-
-from .models import Product
-from .services import get_active_category, get_active_category_by_slug, get_active_product_by_category, get_active_product_by_slug
+from .services import get_active_categories, get_active_category, get_active_category_by_slug, get_active_product_by_category, get_active_product_by_slug, get_active_slides
 
 
 class HomepageTemplateView(TemplateView):
     template_name = 'store/homepage.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['slides'] = get_active_slides()
+        context['categories'] = get_active_categories(5)
+        return context
 
 
 class CategoryListView(ListView):

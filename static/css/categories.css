@@ -1,0 +1,17 @@
+/* Categories */
+
+.main__menu {
+    margin: 45px 0 120px 0;
+}
+
+.main__title {
+    margin-bottom: 47px;
+}
+
+.menu__items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 192px);
+    grid-gap: 50px 52px;
+}
+
+/* End Categories */

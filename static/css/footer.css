@@ -1,0 +1,51 @@
+/* ===Footer========================================== */
+
+.footer {
+    min-height: 151px;
+    background: #303030;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 16px;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+}
+
+.footer__container {
+    display: flex;
+    justify-content: center;
+    column-gap: 165px;
+}
+
+.footer__logo {
+    width: 150px;
+    margin-bottom: 15px;
+}
+
+.footer-nav__item {
+    margin-bottom: 10px;
+}
+
+.footer-nav__link {
+    color: #FFFFFF;
+}
+
+.footer-contacts__title {
+    margin-bottom: 10px;
+}
+
+.footer-contacts__item {
+    margin-bottom: 10px;
+}
+
+.footer-socials__title {
+    margin-bottom: 15px;
+}
+
+.footer-socials__list {
+    display: flex;
+    justify-content: center;
+    column-gap: 27px;
+}
+
+/* ===End Footer====================================== */

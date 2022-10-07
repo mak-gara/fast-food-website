@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import MaxValueValidator
+from django.utils.safestring import mark_safe
 
 
 class Category(models.Model):
@@ -48,6 +49,13 @@ class SliderItem(models.Model):
     is_active = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def image_preview(self):
+        return mark_safe(f'<img src="{self.image.url}" width="100" />')
+    image_preview.short_description = 'Image'
+
+    def __str__(self):
+        return f'{self.pk}'
+
 
 class Store(models.Model):
     '''Point of sale'''
@@ -58,3 +66,39 @@ class Store(models.Model):
 
     def __str__(self):
         return self.adress
+
+
+class Collection(models.Model):
+    '''
+    Basic model for creating collections
+    with the ability to specify the order
+    '''
+
+    sequence_number = models.PositiveSmallIntegerField()
+    is_active = models.BooleanField(default=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
+        ordering = ('sequence_number',)
+
+
+class Recommendation(Collection):
+    '''Model for storing recommendations'''
+
+    item = models.OneToOneField(Product, on_delete=models.DO_NOTHING)
+
+    def __str__(self):
+        return self.item.title
+
+
+class PopularCategory(Collection):
+    '''Model for storing popular categories'''
+
+    item = models.OneToOneField(Category, on_delete=models.DO_NOTHING)
+
+    class Meta:
+        verbose_name_plural = 'Popular categories'
+
+    def __str__(self):
+        return self.item.title

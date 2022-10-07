@@ -1,21 +1,172 @@
 {% extends 'layout/base.html' %}
+{% load static %}
 
-{% block title %}Козацька їдальня{% endblock %}
+{% block title %}Головна{% endblock %}
 
 {% block content %}
-Як ся маєш? Зголоднів? Хочеш БІЛЬШЕ ЕНЕРГІЇ!?? 
-Тоді завітай до нашого закладу прямо тут і зараз!
-Знижки за промокодом
-Купляй два борща- третій у подарунок (тільки спробуй не з’їсти) 
-Ніяких черг і перепонів, повна безпека і, звичайно ж, СМАЧНЮЩА ЇДА 
-від справжніх професіоналів(тут має бути фотка Богдана)
-Ніяких кордонів- доставимо будь-куди(тут має бути карта куди ми насправді доставляємо), будь-що(тут має бути посилання на меню)
-Хто ми такі?
-Все просто. Ми найтехнологічніша їдальня в Україні. Забудьте про радянські їдальні, переповнені і незручні, ми взяли в з них тільки найкраще- рідна народна кухня, роботящі кухарі і дешева їжа! 
-Чим ми кращі за конкурентів?
-Душа- для нас перш за все. Скільки можна терпіти ці нудні ригальні(підібрати краще слово не зміг), які хочуть продати тобі все, що в них є дорожче і дорожче… В нас ціни не змінювались НІКОЛИ. От і мотайте на вус. 
-Оплата
-Давай чесно, нам не важливо як ти розрахуєшся) Готівка чи картка, Bitcoin чи Dogecoin. Заповнюй анкету(посилання на анкету) і готуй гаманець, а ми зробимо все інше.
-Робота в нас
-Працюй за гнучким графіком як тобі буде краще. Підлаштовуємось під студентів. Смачна зарплата- приходь і зароби стартовий капітал(посилання на анкету для працівників)
+<!-- Categories -->
+<div class="categories main__categories">
+    <div class="container categories_container">
+        {% for category in categories %}
+        <div class="category-card categories__category-card">
+            <div class="category-card__img">
+                <a href="#!"><img src="{{ category.image.url }}" alt="01"></a>
+            </div>
+            <div class="category-card__title categories__category-card">
+                <a href="#!">{{ category.title }}</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<!-- End Categories -->
+
+<!-- Main Slider -->
+<div class="carousel main__carousel">
+    <div class="container carousel__container">
+        <div class="image-slider swiper">
+            <div class="image-slider__wrapper swiper-wrapper">
+                {% for slide in slides %}
+                <div class="image-slider__slide swiper-slide">
+                    <div class="image-slider__image">
+                        <img src="{{ slide.image.url }}" alt="01">
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </div>
+</div>
+<!-- End Main Slider -->
+
+<!-- Recommendations -->
+<div class="recomend main__recomend">
+    <div class="container recomend__container">
+        <div class="title recomend__title">
+            Ми рекомендуємо
+        </div>
+        <div class="recomend-slider swiper">
+            <div class="recomend-slider__wrapper swiper-wrapper">
+                <div class="recomend-slider__slide swiper-slide">
+                    <div class="recomend-slider__image">
+                        {% for item in recommendations %}
+                        <div class="food-card">
+                            <div class="food-card__image">
+                                <a href="#!">
+                                    <img src="{% static 'img/categories/05.jpg' %}" alt="05">
+                                </a>
+                            </div>
+                            <div class="food-card__body">
+                                <div class="food-card__title">
+                                    <a href="#!">Філадельфія</a>
+                                </div>
+                                <div class="food-card__quantity-weight">8шт, 260г</div>
+                                <div class="food-card__text">
+                                    Класичний рол з лососем, вершковим сиром, авокадо, ікрою тобіко та
+                                    огірком
+                                </div>
+                                <div class="food-card__price">259 грн</div>
+                                <div class="btn food-card__btn">
+                                    <a href="#!">В кошик</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </div>
+</div>
+<!-- End Recommendations -->
+
+<!-- About Us -->
+<div class="about-us main__about-us">
+    <div class="container about-us__container">
+        <h2 class="title about-us__title">Про Нас</h2>
+        <div class="about-us__content">
+            <div class="about-us__image">
+                <img src="{% static 'img/about_us/01.jpg' %}" alt="01">
+            </div>
+            <div class="about-us__text">
+                <div class="about-us__block1">
+                    <div class="middle-title about-us__middle-title">
+                        Хто ми такі?
+                    </div>
+                    <div class="text about-us__text">
+                        Все просто.
+                        Ми найтехнологічніша їдальня в Україні.
+                        Забудьте про радянські їдальні, переповнені і незручні, ми взяли в з них тільки
+                        найкраще- рідна народна кухня, роботящі кухарі і дешева їжа!
+                    </div>
+                </div>
+                <div class="about-us__block2">
+                    <div class="middle-title about-us__middle-title">
+                        Чим ми кращі за конкурентів?
+                    </div>
+                    <div class="text about-us__text">
+                        Душа - для нас перш за все.
+                        Скільки можна терпіти ці нудні ригальні(підібрати краще слово не зміг), які хочуть
+                        продати тобі все, що в них є дорожче і дорожче… В нас ціни не змінювались НІКОЛИ. От
+                        і мотайте на вус.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End About Us -->
+
+<!-- Delivery And Payment -->
+<div class="delivery main__delivery">
+    <div class="container delivery__container">
+        <h2 class="title delivery__title">
+            Доставка та оплата
+        </h2>
+        <div class="delivery__content">
+            <div class="middle-title delivery__middle-title">
+                Працюємо на доставку та самовивіз 💙💛
+            </div>
+            <ul class="delivery__list">
+                <li class="delivery__item">
+                    оплатити замовлення можна на сайті або готівкою при отриманні
+                </li>
+                <li class="delivery__item">
+                    мінімальне замовлення для доставки - 250 грн, при замовленні на суму менше 250 грн -
+                    тільки
+                    самовивіз
+                </li>
+                <li class="delivery__item">
+                    вартість доставки 50 грн
+                </li>
+                <li class="delivery__item">
+                    у передмістя та окраїнні райони міста
+                    (Північна Салтівка, Рогань, Горизонт, Сонячний, П'ятихатки, селище Жуковського)
+                    тимчасово не
+                    доставляємо
+                </li>
+                <li class="delivery__item">
+                    самовивіз безкоштовно за адресами:
+                </li>
+            </ul>
+            <div class="pickup delivery__pickup">
+                <div class="pickup__title">
+                    Самовивіз
+                </div>
+                <div class="text pickup__text">
+                    Адреса самовивезення: Центр | вул. Полтавський шлях, 3 | Біля кафе "Mon Ami" Нові
+                    будинки |
+                    Садовий проїзд, 9 | Біля магазину «Десятка»
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Delivery And Payment -->
 {% endblock %}

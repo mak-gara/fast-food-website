@@ -1,0 +1,35 @@
+@import url("reset.css");
+@import url("header.css");
+@import url("footer.css");
+@import url("homepage.css");
+@import url("categories.css");
+@import url("contacts.css");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.wrapper {
+    min-height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1210px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ===Content========================================= */
+
+.main {
+    flex: 1 1 auto;
+}
+
+/* ===End Content===================================== */
+
+
