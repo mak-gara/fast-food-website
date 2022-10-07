@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404
 
-from .models import Category, Product, SliderItem
+from .models import Category, PopularCategory, Product, Recommendation, SliderItem
+
 
 # Category model
 def get_active_category():
@@ -20,6 +21,7 @@ def get_active_product_by_category(category):
 
     return category.products.filter(is_active=True)
 
+
 def get_active_categories(amount='all'):
     '''Function to get active categories'''
 
@@ -30,11 +32,22 @@ def get_active_categories(amount='all'):
         return categories[:amount]
 
 
+# PopularCategory model
+def get_active_popular_categories():
+    return PopularCategory.objects.filter(is_active=True)
+
+
+# Recommendation model
+def get_active_recommendations():
+    return Recommendation.objects.filter(is_active=True)
+
+
 # Product model
 def get_active_product_by_slug(slug):
     '''Function to get active product by slug'''
 
     return get_object_or_404(Product, slug=slug, is_active=True)
+
 
 # SliderItem model
 def get_active_slides(amount='all'):

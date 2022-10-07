@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView, ListView, DetailView
 
-from .services import get_active_categories, get_active_category, get_active_category_by_slug, get_active_product_by_category, get_active_product_by_slug, get_active_slides
+from .services import get_active_popular_categories, get_active_category, get_active_category_by_slug, get_active_product_by_category, get_active_product_by_slug, get_active_slides, get_active_recommendations
 
 
 class HomepageTemplateView(TemplateView):
@@ -9,7 +9,8 @@ class HomepageTemplateView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['slides'] = get_active_slides()
-        context['categories'] = get_active_categories(5)
+        context['categories'] = get_active_popular_categories()
+        context['recommendations'] = get_active_recommendations()
         return context
 
 

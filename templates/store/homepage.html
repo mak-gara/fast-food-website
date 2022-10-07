@@ -10,10 +10,10 @@
         {% for category in categories %}
         <div class="category-card categories__category-card">
             <div class="category-card__img">
-                <a href="#!"><img src="{{ category.image.url }}" alt="01"></a>
+                <a href="{{ category.item.get_absolute_url }}"><img src="{{ category.item.image.url }}" alt="01"></a>
             </div>
             <div class="category-card__title categories__category-card">
-                <a href="#!">{{ category.title }}</a>
+                <a href="{{ category.item.get_absolute_url }}">{{ category.item.title }}</a>
             </div>
         </div>
         {% endfor %}
@@ -50,33 +50,33 @@
         </div>
         <div class="recomend-slider swiper">
             <div class="recomend-slider__wrapper swiper-wrapper">
+                {% for recommendation in recommendations %}
                 <div class="recomend-slider__slide swiper-slide">
                     <div class="recomend-slider__image">
-                        {% for item in recommendations %}
                         <div class="food-card">
                             <div class="food-card__image">
                                 <a href="#!">
-                                    <img src="{% static 'img/categories/05.jpg' %}" alt="05">
+                                    <img src="{{ recommendation.item.image.url }}"
+                                        alt="{{ recommendation.sequence_number }}">
                                 </a>
                             </div>
                             <div class="food-card__body">
                                 <div class="food-card__title">
-                                    <a href="#!">Філадельфія</a>
+                                    <a href="#!">{{ recommendation.item.title }}</a>
                                 </div>
-                                <div class="food-card__quantity-weight">8шт, 260г</div>
+                                <div class="food-card__quantity-weight">{{ recommendation.item.weight }} г</div>
                                 <div class="food-card__text">
-                                    Класичний рол з лососем, вершковим сиром, авокадо, ікрою тобіко та
-                                    огірком
+                                    {{ recommendation.item.description }}
                                 </div>
-                                <div class="food-card__price">259 грн</div>
+                                <div class="food-card__price">{{ recommendation.item.price }} грн</div>
                                 <div class="btn food-card__btn">
-                                    <a href="#!">В кошик</a>
+                                    <a href="{{ recommendation.item.get_add_to_cart_url }}">В кошик</a>
                                 </div>
                             </div>
                         </div>
-                        {% endfor %}
                     </div>
                 </div>
+                {% endfor %}
             </div>
             <div class="swiper-pagination"></div>
             <div class="swiper-button-prev"></div>
