@@ -19,7 +19,7 @@
         <header class="header">
             <div class="container header__container">
                 <div class="logo header__logo">
-                    <a href="index.html"><img src="{% static 'img/logo/logo.svg' %}" alt="BestBurger"></a>
+                    <a href="{% url 'store:home' %}"><img src="{% static 'img/logo/logo.svg' %}" alt="BestBurger"></a>
                 </div>
                 <nav class="nav header__nav">
                     <div class="nav__phone-number">
@@ -47,10 +47,18 @@
                     </ul>
                     <div class="cart nav__cart">
                         <div class="cart__icon">
-                            <a href="#!"><img src="{% static 'img/icons/cart.svg' %}" alt="cart"></a>
-                            <div class="cart__quantity">99</div>
+                            <a href="{% url 'cart:cart' %}"><img src="{% static 'img/icons/cart.svg' %}" alt="cart"></a>
+                            {% if cart.get_count != 0 %}
+                            <div class="cart__quantity">
+                                {{ cart.get_count }}
+                            </div>
+                            {% endif %}
                         </div>
-                        <div class="cart__price">400$</div>
+                        {% if cart.get_total_price != 0 %}
+                        <div class="cart__price">
+                            {{ cart.get_total_price }}₴
+                        </div>
+                        {% endif %}
                     </div>
                 </nav>
 
@@ -67,7 +75,7 @@
             <div class="container footer__container">
                 <div class="footer__about">
                     <div class="logo footer__logo">
-                        <a href="index.html"><img src="{% static 'img/logo/logo.svg' %}" alt="BestBurger"></a>
+                        <a href="{% url 'store:home' %}"><img src="{% static 'img/logo/logo.svg' %}" alt="BestBurger"></a>
                     </div>
                     <div class="footer__copyright">
                         © 2002 - 2022 BEST BURGER<br>

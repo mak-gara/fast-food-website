@@ -66,5 +66,9 @@ class Cart(models.Model):
         Function to calculate the total cost
         of all products in the basket
         '''
-        prices = [item.get_final_price() for item in self.items.all()]
-        return sum(prices)
+        price = sum([item.get_final_price() for item in self.items.all()])
+        return price
+
+    def get_count(self):
+        count = sum([item.quantity for item in self.items.all()])
+        return count
