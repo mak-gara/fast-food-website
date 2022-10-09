@@ -114,7 +114,7 @@ class Collection(models.Model):
 class Recommendation(Collection):
     '''Model for storing recommendations'''
 
-    item = models.OneToOneField(Product, on_delete=models.DO_NOTHING, verbose_name='Продукт')
+    item = models.OneToOneField(Product, on_delete=models.CASCADE, verbose_name='Продукт')
 
     class Meta:
         verbose_name = 'Рекомендація'
@@ -127,7 +127,7 @@ class Recommendation(Collection):
 class PopularCategory(Collection):
     '''Model for storing popular categories'''
 
-    item = models.OneToOneField(Category, on_delete=models.DO_NOTHING, verbose_name='Категорія')
+    item = models.OneToOneField(Category, on_delete=models.CASCADE, verbose_name='Категорія')
 
     class Meta:
         verbose_name = 'Популярна категорія'
