@@ -1,3 +1,4 @@
+from pipes import Template
 from django.views.generic import TemplateView, ListView, DetailView
 
 from .services import get_active_popular_categories, get_active_category, get_active_category_by_slug, get_active_product_by_category, get_active_product_by_slug, get_active_slides, get_active_recommendations
@@ -43,3 +44,7 @@ class DishDetailView(DetailView):
 
     def get_object(self):
         return get_active_product_by_slug(self.kwargs.get('slug'))
+
+
+class ContactsTemplateView(TemplateView):
+    template_name = 'store/contacts.html'

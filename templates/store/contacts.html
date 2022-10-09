@@ -1,0 +1,35 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block title %}Контакти{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="contacts main__contacts">
+        <div class="contacts__data">
+            <h1 class="title contacts__title">Контакти</h1>
+            <div class="contacts__paragraphs">
+                <p class="text contacts__item">
+                    Знаходиться за адресою:<br>
+                    м. Харків Центр | вул. Полтавський шлях, 3
+                </p>
+                <p class="text contacts__item">
+                    З нами можна зв'язатися за телефоном:<br>
+                    +38 (123) 123-23-33
+                </p>
+                <p class="text contacts__item">
+                    Електронна пошта:<br>
+                    bestburger@gmail.com
+                </p>
+            </div>
+        </div>
+        <div class="map contacts__map">
+            <div class="map__view" id="map"></div>
+        </div>
+    </div>
+</div>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?callback=initMap"></script>
+<script src="{% static 'js/map.js' %}"></script>
+
+{% endblock %}
