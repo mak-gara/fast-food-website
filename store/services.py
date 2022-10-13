@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, get_list_or_404
 
 from .models import Category, PopularCategory, Product, Recommendation, SliderItem
 
@@ -47,6 +47,9 @@ def get_active_product_by_slug(slug):
     '''Function to get active product by slug'''
 
     return get_object_or_404(Product, slug=slug, is_active=True)
+
+def get_active_products_by_category(category):
+    return category.products.filter(is_active=True)
 
 
 # SliderItem model

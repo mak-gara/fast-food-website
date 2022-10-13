@@ -35,21 +35,26 @@ class Product(models.Model):
     description = models.TextField(verbose_name='Опис')
     image = models.ImageField(
         verbose_name='Зображення', upload_to='products/%Y/%m/%d/')
-    price = models.DecimalField(
-        verbose_name='Ціна', max_digits=10, decimal_places=2)
+    price = models.PositiveIntegerField(verbose_name='Ціна')
     discount_percentage = models.PositiveIntegerField(
         verbose_name='Знижка', blank=True, null=True, validators=[MaxValueValidator(100, message='Введене значення перевищує максимально допустиме')])
-    weight = models.PositiveSmallIntegerField(verbose_name='Вага', blank=True, null=True)
-    volume = models.PositiveSmallIntegerField(verbose_name='Об\'єм', blank=True, null=True)
+    weight = models.PositiveSmallIntegerField(
+        verbose_name='Вага', blank=True, null=True)
+    volume = models.PositiveSmallIntegerField(
+        verbose_name='Об\'єм', blank=True, null=True)
     calories = models.PositiveSmallIntegerField(verbose_name='Калорійність')
-    categories = models.ManyToManyField(Category, related_name='products', verbose_name='Категорії')
+    categories = models.ManyToManyField(
+        Category, related_name='products', verbose_name='Категорії')
     slug = models.SlugField(unique=True)
     is_available = models.BooleanField(verbose_name='Наявність', default=True)
     is_active = models.BooleanField(verbose_name='Активність', default=False)
-    created_at = models.DateTimeField(verbose_name='Дата створення', auto_now_add=True)
-    updated_at = models.DateTimeField(verbose_name='Дата оновлення', auto_now=True)
+    created_at = models.DateTimeField(
+        verbose_name='Дата створення', auto_now_add=True)
+    updated_at = models.DateTimeField(
+        verbose_name='Дата оновлення', auto_now=True)
 
     class Meta:
+        ordering = ['created_at']
         verbose_name = 'Продукт'
         verbose_name_plural = 'Продукти'
 
@@ -58,6 +63,9 @@ class Product(models.Model):
 
         return reverse_lazy('cart:add_to_cart', args=[self.slug])
 
+    def get_absolute_url(self):
+        return reverse_lazy('store:product', args=[self.slug])
+
     def __str__(self):
         return self.title
 
@@ -65,9 +73,11 @@ class Product(models.Model):
 class SliderItem(models.Model):
     '''Model for saving slider images'''
 
-    image = models.ImageField(verbose_name='Зображення', upload_to='slider_images/%Y/%m/%d/')
+    image = models.ImageField(
+        verbose_name='Зображення', upload_to='slider_images/%Y/%m/%d/')
     is_active = models.BooleanField(verbose_name='Активність', default=False)
-    created_at = models.DateTimeField(verbose_name='Дата створення', auto_now_add=True)
+    created_at = models.DateTimeField(
+        verbose_name='Дата створення', auto_now_add=True)
 
     def image_preview(self):
         return mark_safe(f'<img src="{self.image.url}" width="100" />')
@@ -84,9 +94,11 @@ class SliderItem(models.Model):
 class Store(models.Model):
     '''Point of sale'''
 
-    adress = models.CharField(verbose_name='Адреса', max_length=255, db_index=True)
+    adress = models.CharField(verbose_name='Адреса',
+                              max_length=255, db_index=True)
     is_active = models.BooleanField(verbose_name='Активність', default=True)
-    created_at = models.DateTimeField(verbose_name='Дата створення', auto_now_add=True)
+    created_at = models.DateTimeField(
+        verbose_name='Дата створення', auto_now_add=True)
 
     class Meta:
         verbose_name = 'Магазин'
@@ -102,9 +114,11 @@ class Collection(models.Model):
     with the ability to specify the order
     '''
 
-    sequence_number = models.PositiveSmallIntegerField(verbose_name='Порядковий номер')
+    sequence_number = models.PositiveSmallIntegerField(
+        verbose_name='Порядковий номер')
     is_active = models.BooleanField(verbose_name='Активність', default=True)
-    updated_at = models.DateTimeField(verbose_name='Дата оновлення', auto_now=True)
+    updated_at = models.DateTimeField(
+        verbose_name='Дата оновлення', auto_now=True)
 
     class Meta:
         abstract = True
@@ -114,7 +128,8 @@ class Collection(models.Model):
 class Recommendation(Collection):
     '''Model for storing recommendations'''
 
-    item = models.OneToOneField(Product, on_delete=models.CASCADE, verbose_name='Продукт')
+    item = models.OneToOneField(
+        Product, on_delete=models.CASCADE, verbose_name='Продукт')
 
     class Meta:
         verbose_name = 'Рекомендація'
@@ -127,7 +142,8 @@ class Recommendation(Collection):
 class PopularCategory(Collection):
     '''Model for storing popular categories'''
 
-    item = models.OneToOneField(Category, on_delete=models.CASCADE, verbose_name='Категорія')
+    item = models.OneToOneField(
+        Category, on_delete=models.CASCADE, verbose_name='Категорія')
 
     class Meta:
         verbose_name = 'Популярна категорія'

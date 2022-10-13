@@ -1,7 +1,7 @@
 from pipes import Template
 from django.views.generic import TemplateView, ListView, DetailView
 
-from .services import get_active_popular_categories, get_active_category, get_active_category_by_slug, get_active_product_by_category, get_active_product_by_slug, get_active_slides, get_active_recommendations
+from .services import get_active_popular_categories, get_active_category, get_active_category_by_slug, get_active_product_by_slug, get_active_slides, get_active_recommendations, get_active_products_by_category
 
 
 class HomepageTemplateView(TemplateView):
@@ -23,22 +23,24 @@ class CategoryListView(ListView):
         return get_active_category()
 
 
-class DishListView(ListView):
+class ProductListView(ListView):
     template_name = 'store/products.html'
     context_object_name = 'products'
-    paginate_by = 9
-
+    paginate_by = 6
+    
     def get_queryset(self):
-        category = get_active_category_by_slug(self.kwargs.get('slug'))
-        return get_active_product_by_category(category)
+        self.active_category = get_active_category_by_slug(self.kwargs.get('slug'))
+        products = get_active_products_by_category(self.active_category)
+        return products
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['active_category'] = self.active_category
         context['categories'] = get_active_category()
         return context
 
 
-class DishDetailView(DetailView):
+class ProductDetailView(DetailView):
     template_name = 'store/product.html'
     context_object_name = 'product'
 

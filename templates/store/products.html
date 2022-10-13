@@ -1,15 +1,107 @@
 {% extends 'layout/base.html' %}
+{% load static %}
 
 {% block title %}Страви{% endblock %}
 
 {% block content %}
-<div>Dishes</div>
-{% for product in products %}
-<div>{{ product }}</div>
-{% endfor %}
-
-<div>Categories</div>
-{% for category in categories %}
-<div>{{ category }}</div>
-{% endfor %}
+<div class="suggestions main__suggestions">
+    <div class="container suggestions__container">
+        <aside class="menu-panel suggestions__menu-panel">
+            <div class="menu-panel__title">Меню</div>
+            <ul class="menu-panel__list">
+                {% for category in categories %}
+                <li class="menu-panel__item {% if category == active_category %}menu-panel__item_active{% endif %}">
+                    <a href="{{ category.get_absolute_url }}" class="menu-panel__link">{{ category.title }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </aside>
+        <div class="products suggestions__products">
+            <h1 class="title products__title">{{ active_category.title }}</h1>
+            <div class="products__cards">
+                {% for product in products %}
+                <div class="food-card">
+                    <div class="food-card__image">
+                        <a href="{{ product.get_absolute_url }}">
+                            <img src="{{ product.image.url }}" alt="05">
+                        </a>
+                    </div>
+                    <div class="food-card__body">
+                        <div class="food-card__title">
+                            <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+                        </div>
+                        <div class="food-card__quantity-weight">{{ product.weight }} г</div>
+                        <div class="food-card__text">{{ product.description }}</div>
+                        <div class="food-card__price">{{ product.price }} грн</div>
+                        <div class="btn food-card__btn">
+                            <a href="{{ product.get_add_to_cart_url }}">В кошик</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% if page_obj.has_other_pages %}
+            <div class="pagination products__pagination">
+                {% if page_obj.has_previous %}
+                <div class="pagination__btn">
+                    <a href="?page={{ page_obj.previous_page_number }}">
+                        <img src="{% static 'img/icons/left-arrow.svg' %}" alt="previous">
+                    </a>
+                </div>
+                {% else %}
+                <div class="pagination__btn pagination__btn_disabled">
+                    <a href="#!">
+                        <img src="{% static 'img/icons/left-arrow.svg' %}" alt="previous">
+                    </a>
+                </div>
+                {% endif %}
+                <ul class="pagination__list">
+                    {% for page in page_obj.paginator.page_range %}
+                    {% if page_obj.number == page %}
+                    <li class="pagination__item pagination__item_active">
+                        <a href="?page={{ page }}" class="pagination__link">{{ page }}</a>
+                    </li>
+                    {% elif page > page_obj.number|add:-3 and page < page_obj.number|add:3 %}
+                    <li class="pagination__item">
+                        <a href="?page={{ page }}" class="pagination__link">{{ page }}</a>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+                {% if page_obj.has_next %}
+                <div class="pagination__btn">
+                    <a href="?page={{ page_obj.next_page_number }}">
+                        <img src="{% static 'img/icons/right-arrow.svg' %}" alt="next">
+                    </a>
+                </div>
+                {% else %}
+                <div class="pagination__btn pagination__btn_disabled">
+                    <a href="#!">
+                        <img src="{% static 'img/icons/right-arrow.svg' %}" alt="next">
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
 {% endblock %}
+
+<div class="product__pagination">
+    {% if page_obj.has_other_pages %}
+        {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-angle-double-left"></i></a>
+        {% endif %}
+        {% for page in page_obj.paginator.page_range %}
+        {% if page_obj.number == page %}
+        <a href="?page={{ page }}" class="current-page">{{ page }}</a>
+        {% elif page > page_obj.number|add:-3 and page < page_obj.number|add:3 %}
+        <a href="?page={{ page }}">{{ page }}</a>
+        {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}"><i class="fa fa-angle-double-right"></i></a>
+        {% endif %}
+    {% endif %}
+</div>
