@@ -15,6 +15,7 @@
 
 <body>
     <div class="wrapper">
+        <!-- Header -->
         {% block header %}
         <header class="header">
             <div class="container header__container">
@@ -30,13 +31,13 @@
                             <a href="{% url 'store:categories' %}" class="nav__link nav__link_active">Меню</a>
                         </li>
                         <li class="nav__item">
+                            <a href="{% url 'store:delivery_and_payment' %}" class="nav__link">Доставка та оплата</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="{% url 'store:about_us' %}" class="nav__link">Про Нас</a>
+                        </li>
+                        <li class="nav__item">
                             <a href="{% url 'store:contacts' %}" class="nav__link">Контакти</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="#!" class="nav__link">Доставка та оплата</a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="#!" class="nav__link">Про Нас</a>
                         </li>
                         <li class="nav__item">
                             <a href="#!" class="nav__link">
@@ -65,11 +66,16 @@
             </div>
         </header>
         {% endblock %}
+        <!-- End Header -->
 
+        <!-- Content -->
         <main class="main">
             {% block content %}{% endblock %}
         </main>
+        <!-- End Content -->
 
+
+        <!-- Footer -->
         {% block footer %}
         <footer class="footer">
             <div class="container footer__container">
@@ -133,6 +139,7 @@
             </div>
         </footer>
         {% endblock %}
+        <!-- End Footer -->
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>

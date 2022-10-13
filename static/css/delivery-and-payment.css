@@ -1,0 +1,54 @@
+/* ===Delivery And Payment============================= */
+.main__delivery {
+    margin: 60px 0 50px 0;
+}
+
+.delivery__title {
+    margin-bottom: 24px;
+}
+
+.delivery__middle-title {
+    margin-bottom: 24px;
+}
+
+.delivery__list {
+    padding-left: 13px;
+    max-width: 920px;
+    margin-bottom: 20px;
+}
+
+.delivery__item {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    color: #737373;
+    margin-bottom: 13px;
+    position: relative;
+    padding-left: 30px;
+}
+
+.delivery__item:last-child {
+    margin: 0;
+}
+
+.delivery__item::before {
+    content: url("../img/icons/star.svg");
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.pickup {
+    border: 1px solid rgba(115, 115, 115, 0.44);
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 11px 19px;
+}
+
+.pickup__title {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    margin-bottom: 8px;
+}
+/* ===End Delivery And Payment========================= */

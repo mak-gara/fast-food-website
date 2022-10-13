@@ -1,9 +1,10 @@
 {% extends 'layout/base.html' %}
 {% load static %}
 
-{% block title %}Страви{% endblock %}
+{% block title %}{{ active_category.title }}{% endblock %}
 
 {% block content %}
+<!-- Products -->
 <div class="suggestions main__suggestions">
     <div class="container suggestions__container">
         <aside class="menu-panel suggestions__menu-panel">
@@ -40,6 +41,8 @@
                 </div>
                 {% endfor %}
             </div>
+            
+            <!-- Pagination -->
             {% if page_obj.has_other_pages %}
             <div class="pagination products__pagination">
                 {% if page_obj.has_previous %}
@@ -55,6 +58,7 @@
                     </a>
                 </div>
                 {% endif %}
+
                 <ul class="pagination__list">
                     {% for page in page_obj.paginator.page_range %}
                     {% if page_obj.number == page %}
@@ -68,6 +72,7 @@
                     {% endif %}
                     {% endfor %}
                 </ul>
+
                 {% if page_obj.has_next %}
                 <div class="pagination__btn">
                     <a href="?page={{ page_obj.next_page_number }}">
@@ -83,25 +88,9 @@
                 {% endif %}
             </div>
             {% endif %}
+            <!-- End Pagination -->
         </div>
     </div>
 </div>
+<!-- End Products -->
 {% endblock %}
-
-<div class="product__pagination">
-    {% if page_obj.has_other_pages %}
-        {% if page_obj.has_previous %}
-        <a href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-angle-double-left"></i></a>
-        {% endif %}
-        {% for page in page_obj.paginator.page_range %}
-        {% if page_obj.number == page %}
-        <a href="?page={{ page }}" class="current-page">{{ page }}</a>
-        {% elif page > page_obj.number|add:-3 and page < page_obj.number|add:3 %}
-        <a href="?page={{ page }}">{{ page }}</a>
-        {% endif %}
-        {% endfor %}
-        {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}"><i class="fa fa-angle-double-right"></i></a>
-        {% endif %}
-    {% endif %}
-</div>
