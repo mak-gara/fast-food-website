@@ -25,7 +25,7 @@ class CategoryListView(ListView):
 class ProductListView(ListView):
     template_name = 'store/products.html'
     context_object_name = 'products'
-    paginate_by = 6
+    paginate_by = 1
 
     def get_queryset(self):
         self.active_category = get_active_category_by_slug(

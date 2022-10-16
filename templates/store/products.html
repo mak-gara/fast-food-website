@@ -1,5 +1,6 @@
 {% extends 'layout/base.html' %}
 {% load static %}
+{% load pagination %}
 
 {% block title %}{{ active_category.title }}{% endblock %}
 
@@ -43,51 +44,7 @@
             </div>
             
             <!-- Pagination -->
-            {% if page_obj.has_other_pages %}
-            <div class="pagination products__pagination">
-                {% if page_obj.has_previous %}
-                <div class="pagination__btn">
-                    <a href="?page={{ page_obj.previous_page_number }}">
-                        <img src="{% static 'img/icons/left-arrow.svg' %}" alt="previous">
-                    </a>
-                </div>
-                {% else %}
-                <div class="pagination__btn pagination__btn_disabled">
-                    <a href="#!">
-                        <img src="{% static 'img/icons/left-arrow.svg' %}" alt="previous">
-                    </a>
-                </div>
-                {% endif %}
-
-                <ul class="pagination__list">
-                    {% for page in page_obj.paginator.page_range %}
-                    {% if page_obj.number == page %}
-                    <li class="pagination__item pagination__item_active">
-                        <a href="?page={{ page }}" class="pagination__link">{{ page }}</a>
-                    </li>
-                    {% elif page > page_obj.number|add:-3 and page < page_obj.number|add:3 %}
-                    <li class="pagination__item">
-                        <a href="?page={{ page }}" class="pagination__link">{{ page }}</a>
-                    </li>
-                    {% endif %}
-                    {% endfor %}
-                </ul>
-
-                {% if page_obj.has_next %}
-                <div class="pagination__btn">
-                    <a href="?page={{ page_obj.next_page_number }}">
-                        <img src="{% static 'img/icons/right-arrow.svg' %}" alt="next">
-                    </a>
-                </div>
-                {% else %}
-                <div class="pagination__btn pagination__btn_disabled">
-                    <a href="#!">
-                        <img src="{% static 'img/icons/right-arrow.svg' %}" alt="next">
-                    </a>
-                </div>
-                {% endif %}
-            </div>
-            {% endif %}
+            {% pagination page_obj 2 %}
             <!-- End Pagination -->
         </div>
     </div>
