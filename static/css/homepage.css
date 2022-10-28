@@ -44,6 +44,7 @@
 /* ===End Categories=================================== */
 
 /* ===Main Slider====================================== */
+
 .main__carousel {
     margin-bottom: 60px;
 }
@@ -58,6 +59,7 @@
     max-height: 385px;
     object-fit: cover;
 }
+
 /* ===End Main Slider================================== */
 
 /* ===Recommendations================================== */

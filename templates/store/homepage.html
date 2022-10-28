@@ -62,7 +62,7 @@
                             </div>
                             <div class="food-card__body">
                                 <div class="food-card__title">
-                                    <a href="#!">{{ recommendation.item.title }}</a>
+                                    <a href="{{ recommendation.item.get_absolute_url }}">{{ recommendation.item.title }}</a>
                                 </div>
                                 <div class="food-card__quantity-weight">{{ recommendation.item.weight }} г</div>
                                 <div class="food-card__text">

@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404, get_list_or_404
+from random import randint
 
 from .models import Category, PopularCategory, Product, Recommendation, SliderItem
 
@@ -16,12 +17,6 @@ def get_active_category_by_slug(slug):
     return get_object_or_404(Category, slug=slug, is_active=True)
 
 
-def get_active_product_by_category(category):
-    '''Function to receive active products by category'''
-
-    return category.products.filter(is_active=True)
-
-
 def get_active_categories(amount='all'):
     '''Function to get active categories'''
 
@@ -34,22 +29,45 @@ def get_active_categories(amount='all'):
 
 # PopularCategory model
 def get_active_popular_categories():
-    return PopularCategory.objects.filter(is_active=True)
+    '''Function to get active popular categories'''
+
+    return PopularCategory.objects.filter(is_active=True, item__is_active=True)
 
 
 # Recommendation model
 def get_active_recommendations():
-    return Recommendation.objects.filter(is_active=True)
+    '''Function to get active recommendations'''
+
+    return Recommendation.objects.filter(is_active=True, item__is_active=True, item__categories__is_active=True).distinct()
 
 
 # Product model
+def get_active_products():
+    '''Function to get active products'''
+
+    return Product.objects.filter(is_active=True, categories__is_active=True).distinct()
+
+
 def get_active_product_by_slug(slug):
     '''Function to get active product by slug'''
 
-    return get_object_or_404(Product, slug=slug, is_active=True)
+    return get_list_or_404(Product, slug=slug, is_active=True, categories__is_active=True)[0]
+
 
 def get_active_products_by_category(category):
-    return category.products.filter(is_active=True)
+    '''Function of obtaining active products in a certain category'''
+
+    return category.products.filter(is_active=True, categories__is_active=True).distinct()
+
+
+def get_random_product():
+    '''
+    Function of obtaining a random product
+    from the list of all active products
+    '''
+
+    products = get_active_products()
+    return products[randint(0, products.count() - 1)]
 
 
 # SliderItem model
