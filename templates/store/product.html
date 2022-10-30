@@ -1,7 +1,63 @@
 {% extends 'layout/base.html' %}
+{% load static %}
 
-{% block title %}Product{% endblock %}
+{% block title %}{{ product.title }}{% endblock %}
 
 {% block content %}
-{{ product }}
+<div class="product main__product">
+    <div class="container product__container">
+        <div class="product__wrapper">
+            <div class="product__left-col">
+                <div class="breadcrumb product__breadcrumb">
+                    <ul class="breadcrumb__list">
+                        <li class="breadcrumb__item">
+                            <a href="{% url 'store:home' %}" class="breadcrumn__link">Головна</a>
+                        </li>
+                        <li class="breadcrumb__item">
+                            <a href="#!" class="breadcrumn__link">Суші та сети</a>
+                        </li>
+                        <li class="breadcrumb__item">
+                            <a href="{{ product.get_absolute_url }}" class="breadcrumn__link breadcrumn__link_active">Філадельфія</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="product__image">
+                    <img src="{{ product.image.url }}" alt="">
+                </div>
+                <div class="product__properties">
+                    <div class="product_price">{{ product.price }} грн</div>
+                    <div class="product_weight">{{ product.weight }} г</div>
+                </div>
+                <div class="btn btn_fill_green product__btn">
+                    <a href="#!">Замовити</a>
+                </div>
+            </div>
+            <div class="product__rigth-col">
+                <h1 class="product__title">{{ product.title }}</h1>
+                <div class="product__about">
+                    <div class="product__subtitle">Інгрідієнти</div>
+                    <div class="product__description text">{{ product.description }}</div>
+                </div>
+                <div class="notification product__notification">
+                    <div class="notification__item">
+                        <div class="notification__image">
+                            <img src="{% static 'img/icons/truck.svg' %}" alt="delivery">
+                        </div>
+                        <div class="notification__text">
+                            Безкоштовна доставка при замовленні від 1500 грн
+                        </div>
+                    </div>
+                    <div class="notification__item">
+                        <div class="notification__image">
+                            <img src="{% static 'img/icons/shop.svg' %}" alt="discond">
+                        </div>
+                        <div class="notification__text">
+                            Знижка 0%, якщо забираєте замовлення з ресторану
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
