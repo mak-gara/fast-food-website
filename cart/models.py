@@ -42,6 +42,9 @@ class CartItem(models.Model):
             return total_price - discount_price
         return total_price
 
+    class Meta:
+        verbose_name = 'Елемент кошика'
+        verbose_name_plural = 'Вміст кошиків'
 
 class Cart(models.Model):
     '''Shopping cart model'''
@@ -75,3 +78,7 @@ class Cart(models.Model):
 
         count = sum([item.quantity for item in self.items.all()])
         return count
+
+    class Meta:
+        verbose_name = 'Кошик'
+        verbose_name_plural = 'Кошики'

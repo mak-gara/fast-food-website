@@ -169,10 +169,14 @@ class PopularCategory(Collection):
 
 
 class Order(models.Model):
+    PAYMENT = (
+        ('cash', 'Оплата готівкою'),
+    )
     customer_name = models.CharField(
         verbose_name="Ім'я замовника", max_length=255)
     phone_number = PhoneNumberField(verbose_name='Номер телефону')
     email = models.EmailField()
+    payment = models.CharField(verbose_name='Оплата', max_length=4, choices=PAYMENT)
     comment = models.TextField(
         verbose_name='Коментар', max_length=250, blank=True, null=True)
     is_active = models.BooleanField(verbose_name='Активність', default=True)
@@ -189,6 +193,10 @@ class PickUpOrder(Order):
     store = models.OneToOneField(
         Store, on_delete=models.PROTECT, verbose_name='Магазин')
 
+    class Meta:
+        verbose_name = 'Самовивіз'
+        verbose_name_plural = 'Самовивіз'
+
 
 class DeliveryOrder(Order):
     street = models.CharField(verbose_name='Вулиця', max_length=255)
@@ -201,3 +209,8 @@ class DeliveryOrder(Order):
     recipient_phone_number = PhoneNumberField(
         verbose_name='Номер телефону отримувача')
     recipient_email = models.EmailField(verbose_name='Email отримувача')
+
+    class Meta:
+        verbose_name = 'Доставка'
+        verbose_name_plural = 'Доставка'
+
