@@ -13,11 +13,13 @@
                         <li class="breadcrumb__item">
                             <a href="{% url 'store:home' %}" class="breadcrumn__link">Головна</a>
                         </li>
+                        {% with category=product.categories.all.0 %}
                         <li class="breadcrumb__item">
-                            <a href="#!" class="breadcrumn__link">Суші та сети</a>
+                            <a href="{{ category.get_absolute_url }}" class="breadcrumn__link">{{ category.title }}</a>
                         </li>
+                        {% endwith %}
                         <li class="breadcrumb__item">
-                            <a href="{{ product.get_absolute_url }}" class="breadcrumn__link breadcrumn__link_active">Філадельфія</a>
+                            <a href="{{ product.get_absolute_url }}" class="breadcrumn__link breadcrumn__link_active">{{ product.title }}</a>
                         </li>
                     </ul>
                 </div>
@@ -29,7 +31,7 @@
                     <div class="product_weight">{{ product.weight }} г</div>
                 </div>
                 <div class="btn btn_fill_green product__btn">
-                    <a href="#!">Замовити</a>
+                    <a href="{{ product.get_add_to_cart_url }}">В кошик</a>
                 </div>
             </div>
             <div class="product__rigth-col">

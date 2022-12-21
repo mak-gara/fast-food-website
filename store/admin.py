@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product, SliderItem, Store, Recommendation, PopularCategory
+from .models import Category, Product, SliderItem, Store, Recommendation, PopularCategory, PickUpOrder, DeliveryOrder, PopularProduct
 
 
 @admin.register(Category)
@@ -56,6 +56,20 @@ class RecommendationAdmin(admin.ModelAdmin):
     list_filter = ['is_active']
 
 
+@admin.register(PopularProduct)
+class PopularProductAdmin(admin.ModelAdmin):
+    list_display = [
+        'id',
+        'item',
+        'sequence_number',
+        'updated_at'
+    ]
+    list_display_links = ['item']
+    list_editable = ['sequence_number']
+    autocomplete_fields = ['item']
+    list_filter = ['is_active']
+
+
 @admin.register(PopularCategory)
 class PopularCategoryAdmin(admin.ModelAdmin):
     list_display = [
@@ -90,3 +104,23 @@ class StoreAdmin(admin.ModelAdmin):
     ]
     list_filter = ['is_active']
     list_editable = ['is_active']
+
+
+@admin.register(PickUpOrder)
+class PickUpOrderAdmin(admin.ModelAdmin):
+    list_display = [
+        'id',
+        'customer_name',
+        'phone_number',
+        'email',
+        'store',
+        'is_active',
+        'created_at'
+    ]
+    list_filter = [
+        'created_at',
+        'is_active'
+    ]
+    list_editable = [
+        'is_active'
+    ]

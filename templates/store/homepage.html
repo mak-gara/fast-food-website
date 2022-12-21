@@ -1,5 +1,6 @@
 {% extends 'layout/base.html' %}
 {% load static %}
+{% load custom_tags %}
 
 {% block title %}Головна{% endblock %}
 
@@ -34,9 +35,9 @@
                 </div>
                 {% endfor %}
             </div>
-            <div class="swiper-pagination"></div>
-            <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
         </div>
     </div>
 </div>
@@ -44,37 +45,15 @@
 
 <!-- Recommendations -->
 <div class="recomend main__recomend">
-    <div class="container recomend__container">
+    <div class="container collection__container">
         <div class="title recomend__title">
             Ми рекомендуємо
         </div>
         <div class="recomend-slider swiper">
             <div class="recomend-slider__wrapper swiper-wrapper">
                 {% for recommendation in recommendations %}
-                <div class="recomend-slider__slide swiper-slide">
-                    <div class="recomend-slider__image">
-                        <div class="food-card">
-                            <div class="food-card__image">
-                                <a href="#!">
-                                    <img src="{{ recommendation.item.image.url }}"
-                                        alt="{{ recommendation.sequence_number }}">
-                                </a>
-                            </div>
-                            <div class="food-card__body">
-                                <div class="food-card__title">
-                                    <a href="{{ recommendation.item.get_absolute_url }}">{{ recommendation.item.title }}</a>
-                                </div>
-                                <div class="food-card__quantity-weight">{{ recommendation.item.weight }} г</div>
-                                <div class="food-card__text">
-                                    {{ recommendation.item.description }}
-                                </div>
-                                <div class="food-card__price">{{ recommendation.item.price }} грн</div>
-                                <div class="btn food-card__btn">
-                                    <a href="{{ recommendation.item.get_add_to_cart_url }}">В кошик</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="collection__slide swiper-slide">
+                    {% product_card recommendation.item %}
                 </div>
                 {% endfor %}
             </div>
@@ -85,4 +64,26 @@
     </div>
 </div>
 <!-- End Recommendations -->
+
+<!-- Popular Products ------>
+<div class="popular main__popular">
+    <div class="container collection__container">
+        <div class="title recomend__title">
+            Популярні продукти
+        </div>
+        <div class="popular-slider swiper">
+            <div class="popular-slider__wrapper swiper-wrapper">
+                {% for popular_product in popular_products %}
+                <div class="collection__slide swiper-slide">
+                    {% product_card popular_product.item %}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </div>
+</div>
+<!-- End Popular Products -->
 {% endblock %}

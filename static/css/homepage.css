@@ -13,11 +13,12 @@
 }
 
 .category-card {
-    transition: transform x 80ms linear;
+    transition: 0.3s;
 }
 
 .category-card:hover {
     transform: scale(1.1);
+    transition: 0.3s;
 }
 
 .category-card__img {
@@ -41,6 +42,7 @@
 .category-card__title a {
     color: #000000;
 }
+
 /* ===End Categories=================================== */
 
 /* ===Main Slider====================================== */
@@ -50,13 +52,14 @@
 }
 
 .image-slider__image {
+    height: 385px;
     border-radius: 10px;
     overflow: hidden;
 }
 
 .image-slider__image img {
     width: 100%;
-    max-height: 385px;
+    height: 100%;
     object-fit: cover;
 }
 
@@ -78,15 +81,21 @@
     margin-bottom: 24px;
 }
 
-.recomend-slider__slide {
-    margin-bottom: 9px;
+.collection__slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0px;
 }
 
 .food-card {
     width: 245px;
+    height: 500px;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
 }
 
 .food-card__image {
@@ -102,6 +111,9 @@
 
 .food-card__body {
     padding: 0 12px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .food-card__title {
@@ -129,6 +141,7 @@
     line-height: 16px;
     color: #737373;
     margin-bottom: 38px;
+    flex-grow: 1;
 }
 
 .food-card__price {
@@ -143,6 +156,7 @@
     border: 1px solid #8C9F3F;
     border-radius: 10px;
     text-align: center;
+    transition: 0.3s;
 }
 
 .btn a {
@@ -154,9 +168,26 @@
     color: #8C9F3F;
 }
 
-.food-card__btn {
-    margin-bottom: 19px;
+.btn:hover {
+    background: #8C9F3F;
 }
+
+.btn a:hover {
+    color: white;
+}
+
+.food-card__btn {
+    margin: 0px 10px 19px;
+}
+
 /* ===End Recommendations============================== */
+
+/* ===Popular Products============================== */
+
+.main__popular {
+    margin-bottom: 88px;
+}
+
+/* ===End Popular Products============================== */
 
 /* ===End Homepage===================================== */

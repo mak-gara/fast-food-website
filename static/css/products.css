@@ -88,6 +88,10 @@
     background: #8C9F3F;
 }
 
+.pagination__btn_disabled {
+    background: #C8C8C8;
+}
+
 .pagination__list {
     display: flex;
     column-gap: 15px;

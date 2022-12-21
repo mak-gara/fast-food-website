@@ -1,0 +1,18 @@
+<div class="food-card">
+    <div class="food-card__image">
+        <a href="{{ product.get_absolute_url }}">
+            <img src="{{ product.image.url }}" alt="{{ product.title }}">
+        </a>
+    </div>
+    <div class="food-card__body">
+        <div class="food-card__title">
+            <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+        </div>
+        <div class="food-card__quantity-weight">{{ product.weight }} г</div>
+        <div class="food-card__text">{{ product.description|truncatechars:110 }}</div>
+        <div class="food-card__price">{{ product.price }} грн</div>
+    </div>
+    <div class="btn food-card__btn">
+        <a href="{{ product.get_add_to_cart_url }}">В кошик</a>
+    </div>
+</div>

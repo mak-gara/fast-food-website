@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import AboutUsTemplateView, CategoryListView, ContactsTemplateView, DeliveryAndPaymentTemplateView, ProductDetailView, ProductListView, HomepageTemplateView
+from .views import AboutUsTemplateView, CategoryListView, ContactsTemplateView, DeliveryAndPaymentTemplateView, ProductDetailView, ProductListView, HomepageTemplateView, orders
 
 
 app_name = 'store'
@@ -13,5 +13,6 @@ urlpatterns = [
     path('contacts/', ContactsTemplateView.as_view(), name='contacts'),
     path('about_us/', AboutUsTemplateView.as_view(), name='about_us'),
     path('delivery_and_payment/', DeliveryAndPaymentTemplateView.as_view(),
-         name='delivery_and_payment')
+         name='delivery_and_payment'),
+    path('orders/', orders, name='orders')
 ]

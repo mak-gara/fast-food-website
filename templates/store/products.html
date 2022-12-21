@@ -1,6 +1,6 @@
 {% extends 'layout/base.html' %}
 {% load static %}
-{% load pagination %}
+{% load custom_tags %}
 
 {% block title %}{{ active_category.title }}{% endblock %}
 
@@ -22,24 +22,7 @@
             <h1 class="title products__title">{{ active_category.title }}</h1>
             <div class="products__cards">
                 {% for product in products %}
-                <div class="food-card">
-                    <div class="food-card__image">
-                        <a href="{{ product.get_absolute_url }}">
-                            <img src="{{ product.image.url }}" alt="05">
-                        </a>
-                    </div>
-                    <div class="food-card__body">
-                        <div class="food-card__title">
-                            <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
-                        </div>
-                        <div class="food-card__quantity-weight">{{ product.weight }} г</div>
-                        <div class="food-card__text">{{ product.description }}</div>
-                        <div class="food-card__price">{{ product.price }} грн</div>
-                        <div class="btn food-card__btn">
-                            <a href="{{ product.get_add_to_cart_url }}">В кошик</a>
-                        </div>
-                    </div>
-                </div>
+                {% product_card product %}
                 {% endfor %}
             </div>
             

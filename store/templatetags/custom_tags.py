@@ -15,3 +15,7 @@ def pagination(page_obj, distance):
         'page_obj': page_obj,
         'page_range': range(start_point, end_point + 1)
     }
+
+@register.inclusion_tag('include/product-card.html')
+def product_card(product):
+    return {'product': product}

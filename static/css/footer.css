@@ -48,4 +48,13 @@
     column-gap: 27px;
 }
 
+.footer-socials__link img {
+    transition: 0.3s;
+}
+
+.footer-socials__link img:hover {
+    transition: 0.3s;
+    transform: scale(1.3);
+}
+
 /* ===End Footer====================================== */
