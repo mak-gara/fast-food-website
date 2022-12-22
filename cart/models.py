@@ -3,7 +3,6 @@ from django.conf import settings
 
 from store.models import Product
 
-
 class CartItem(models.Model):
     '''Shopping cart element'''
 

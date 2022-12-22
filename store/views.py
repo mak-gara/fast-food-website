@@ -1,8 +1,6 @@
 from django.views.generic import TemplateView, ListView, DetailView
-from django.shortcuts import render
 
 from .services import get_active_popular_categories, get_active_popular_products, get_active_category, get_active_category_by_slug, get_active_product_by_slug, get_active_slides, get_active_recommendations, get_active_products_by_category
-from .forms import PickUpOrderForm
 
 
 class HomepageTemplateView(TemplateView):
@@ -63,11 +61,3 @@ class AboutUsTemplateView(TemplateView):
 class ContactsTemplateView(TemplateView):
     template_name = 'store/contacts.html'
 
-
-def orders(request):
-    if request.method == 'POST':
-        pass
-    else:
-        form = PickUpOrderForm(initial={'customer_name': 'Jack'})
-    context = {'form': form}
-    return render(request, 'store/pick-up-order.html', context)

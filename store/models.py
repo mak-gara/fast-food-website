@@ -2,7 +2,6 @@ from django.db import models
 from django.urls import reverse_lazy
 from django.core.validators import MaxValueValidator
 from django.utils.safestring import mark_safe
-from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Category(models.Model):
@@ -166,51 +165,3 @@ class PopularCategory(Collection):
 
     def __str__(self):
         return self.item.title
-
-
-class Order(models.Model):
-    PAYMENT = (
-        ('cash', 'Оплата готівкою'),
-    )
-    customer_name = models.CharField(
-        verbose_name="Ім'я замовника", max_length=255)
-    phone_number = PhoneNumberField(verbose_name='Номер телефону')
-    email = models.EmailField()
-    payment = models.CharField(verbose_name='Оплата', max_length=4, choices=PAYMENT)
-    comment = models.TextField(
-        verbose_name='Коментар', max_length=250, blank=True, null=True)
-    is_active = models.BooleanField(verbose_name='Активність', default=True)
-    created_at = models.DateTimeField(
-        verbose_name='Дата замовлення', auto_now_add=True)
-    updated_at = models.DateTimeField(
-        verbose_name='Дата оновлення', auto_now=True)
-
-    class Meta:
-        abstract = True
-
-
-class PickUpOrder(Order):
-    store = models.OneToOneField(
-        Store, on_delete=models.PROTECT, verbose_name='Магазин')
-
-    class Meta:
-        verbose_name = 'Самовивіз'
-        verbose_name_plural = 'Самовивіз'
-
-
-class DeliveryOrder(Order):
-    street = models.CharField(verbose_name='Вулиця', max_length=255)
-    house = models.CharField(verbose_name='Будинок', max_length=10)
-    entrance = models.CharField(verbose_name="Під'їзд", max_length=10)
-    floor = models.CharField(verbose_name='Поверх', max_length=5)
-    flat = models.CharField(verbose_name='Квартири', max_length=5)
-    recipient_name = models.CharField(
-        verbose_name="Ім'я отримувача", max_length=255)
-    recipient_phone_number = PhoneNumberField(
-        verbose_name='Номер телефону отримувача')
-    recipient_email = models.EmailField(verbose_name='Email отримувача')
-
-    class Meta:
-        verbose_name = 'Доставка'
-        verbose_name_plural = 'Доставка'
-
