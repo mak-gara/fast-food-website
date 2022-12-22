@@ -2,9 +2,6 @@
 This is e-commerce website built on Django.
 It has minimal functionality for the functioning of an e-commerce website. Including adding items to cart and online payment.
 
-### Project description
-lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
-
 ### Running this project
 1. Сopy this repository
 2. Install the virtual environment
