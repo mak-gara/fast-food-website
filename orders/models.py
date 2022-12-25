@@ -29,7 +29,7 @@ class Order(models.Model):
 
 
 class PickUpOrder(Order):
-    store = models.OneToOneField(
+    store = models.ForeignKey(
         Store, on_delete=models.PROTECT, verbose_name='Магазин')
 
     class Meta:

@@ -12,7 +12,7 @@ def get_cart(request):
     or anonymous user. If the cart does not exist,
     it will be created
     '''
-
+    
     if request.user.is_authenticated:
         cart = Cart.objects.get_or_create(user=request.user, is_ordered=False)[0]
         return cart

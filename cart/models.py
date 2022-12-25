@@ -48,7 +48,7 @@ class CartItem(models.Model):
 class Cart(models.Model):
     '''Shopping cart model'''
 
-    user = models.OneToOneField(settings.AUTH_USER_MODEL,
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
                                 on_delete=models.CASCADE,
                                 blank=True, null=True)
     items = models.ManyToManyField(CartItem, blank=True)
