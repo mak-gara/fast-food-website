@@ -2,7 +2,7 @@ from django.views.generic import TemplateView
 from django.shortcuts import redirect
 from django.http import Http404
 
-from .services import check_item, get_cart, create_item_and_add_to_cart, get_cart_item_or_404, get_cart_or_404, increase_item_quantity, decrease_item_quantity, remove_item_from_cart, set_item_quantity
+from .services import check_item, get_cart, create_item_and_add_to_cart, get_cart_item_or_404, increase_item_quantity, decrease_item_quantity, remove_item_from_cart, set_item_quantity
 
 
 class CartPageTemplateView(TemplateView):
@@ -39,14 +39,14 @@ def set_quantity_of_items(request, slug, quantity):
 
 
 def remove_from_cart(request, slug):
-    cart = get_cart_or_404(request.user)
+    cart = get_cart(request)
     item = get_cart_item_or_404(cart, slug)
     remove_item_from_cart(cart, item)
     return redirect('cart:cart')
 
 
 def reduse_quantity_item(request, slug):
-    cart = get_cart_or_404(request.user)
+    cart = get_cart(request)
     item = get_cart_item_or_404(cart, slug)
     quantity = decrease_item_quantity(item)
     if quantity == 0:

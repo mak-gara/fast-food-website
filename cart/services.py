@@ -14,13 +14,13 @@ def get_cart(request):
     '''
 
     if request.user.is_authenticated:
-        cart = Cart.objects.get_or_create(user=request.user)[0]
+        cart = Cart.objects.get_or_create(user=request.user, is_ordered=False)[0]
         return cart
     else:
         if not request.session.session_key:
             request.session.create()
         cart = Cart.objects.get_or_create(
-            session_key=request.session.session_key)[0]
+            session_key=request.session.session_key, is_ordered=False)[0]
         return cart
 
 
@@ -29,7 +29,7 @@ def get_cart_or_404(user):
     Function to receive the cart. If the cart does not exist,
     a Http404() exception will be thrown
     '''
-
+    
     return get_object_or_404(Cart, user=user)
 
 
