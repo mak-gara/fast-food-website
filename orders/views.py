@@ -7,10 +7,7 @@ from cart.services import get_cart
 from .services import hide_cart
 
 
-class PickUpOrderView(CreateView):
-    template_name = 'store/pick-up-order.html'
-    form_class = PickUpOrderForm
-    success_url = reverse_lazy('store:home')
+class CreateOrderMixin:
 
     def get(self, request, *args, **kwargs):
         # перевірка чи непорожня корзина
@@ -29,5 +26,17 @@ class PickUpOrderView(CreateView):
         return response
 
 
-class EmptyCartView(TemplateView):
+class PickUpOrderView(CreateOrderMixin, CreateView):
+    template_name = 'orders/pick-up-order.html'
+    form_class = PickUpOrderForm
+    success_url = reverse_lazy('store:home')
+
+
+class DeliveryOrderView(CreateOrderMixin, CreateView):
+    template_name = 'orders/delivery-order.html'
+    form_class = DeliveryOrderForm
+    success_url = reverse_lazy('store:home')
+
+
+class EmptyCartView(CreateOrderMixin, TemplateView):
     template_name = 'orders/empty-cart.html'
