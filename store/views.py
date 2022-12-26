@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView, ListView, DetailView
 
-from .services import get_active_popular_categories, get_active_popular_products, get_active_category, get_active_category_by_slug, get_active_product_by_slug, get_active_slides, get_active_recommendations, get_active_products_by_category
+from .services import get_active_popular_categories, get_active_popular_products, get_active_category, get_active_category_by_slug, get_active_product_by_slug, get_active_slides, get_active_recommendations, get_active_products_by_category, get_random_product
 
 
 class HomepageTemplateView(TemplateView):
@@ -50,6 +50,11 @@ class ProductDetailView(DetailView):
         return get_active_product_by_slug(self.kwargs.get('slug'))
 
 
+class RandomProductDetailView(ProductDetailView):
+    def get_object(self):
+        return get_random_product()
+
+
 class DeliveryAndPaymentTemplateView(TemplateView):
     template_name = 'store/delivery-and-payment.html'
 
@@ -60,4 +65,3 @@ class AboutUsTemplateView(TemplateView):
 
 class ContactsTemplateView(TemplateView):
     template_name = 'store/contacts.html'
-

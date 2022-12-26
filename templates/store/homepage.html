@@ -86,4 +86,24 @@
     </div>
 </div>
 <!-- End Popular Products -->
+
+<!-- Random Product -->
+<div class="random-product main__random-product">
+    <div class="random-product__body">
+        <div class="title">Страва дня!</div>
+        <div class="text random-product__text">
+            Вважаєш шо то меню для чайників?<br>
+            Ніяк не можеш підібрати їстівне до вечері?<br>
+            Хочеш порадувати домашню тваринку делікатесом?<br>
+            Підберем для тебе провізію без зволікань.
+        </div>
+        <div class="btn btn_green random-product__btn">
+            <a href="{% url 'store:random_product' %}">ПОРИНЬ В РАНДОМ</a>
+        </div>
+    </div>
+    <div class="random-product__img">
+        <img src="{% static 'img/food.jpg' %}" alt="food">
+    </div>
+</div>
+<!-- End Random Product -->
 {% endblock %}

@@ -74,15 +74,19 @@
     line-height: 17px;
 }
 
-
 .btn_fill_green {
-    background: #95A944;
+    border: none;
     width: 218px;
+    background: #95A944;
+}
+
+.btn_fill_green:hover {
+    transform: scale(1.1);
 }
 
 .btn_fill_green a {
     color: #FFFFFF;
-}
+} 
 
 .product__btn {
     margin: 0 auto;
@@ -136,4 +140,5 @@
     line-height: 17px;
     color: #333333;
 }
+
 /* ===End Product====================================== */
