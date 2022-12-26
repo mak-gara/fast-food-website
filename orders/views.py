@@ -1,6 +1,7 @@
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.views.generic import CreateView, TemplateView
+from django.core.mail import send_mail
 
 from .forms import PickUpOrderForm, DeliveryOrderForm
 from cart.services import get_cart
@@ -22,6 +23,17 @@ class CreateOrderMixin:
 
     def form_valid(self, form):
         response = super().form_valid(form)
+        data = form.cleaned_data
+        recipients = [data.get('email')]
+        if data.get('recipient_email'):
+            if data.get('email') != data.get('recipient_email'):
+                recipients.append(data.get('recipient_email'))
+        send_mail(
+            'Інформація',
+            'Тіло листа',
+            'test@gmail.com',
+            recipients
+        )
         hide_cart(get_cart(self.request))
         return response
 
