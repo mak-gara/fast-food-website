@@ -44,7 +44,7 @@ class DeliveryOrder(Order):
         verbose_name="Під'їзд", max_length=10, blank=True, null=True)
     floor = models.CharField(verbose_name='Поверх',
                              max_length=5, blank=True, null=True)
-    flat = models.CharField(verbose_name='Квартири',
+    flat = models.CharField(verbose_name='Квартира',
                             max_length=5, blank=True, null=True)
     recipient_name = models.CharField(
         verbose_name="Ім'я отримувача", max_length=255)

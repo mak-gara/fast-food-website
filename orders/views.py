@@ -2,6 +2,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.views.generic import CreateView, TemplateView
 from django.core.mail import send_mail
+from django.template.loader import render_to_string
 
 from .forms import PickUpOrderForm, DeliveryOrderForm
 from cart.services import get_cart
@@ -28,9 +29,15 @@ class CreateOrderMixin:
         if data.get('recipient_email'):
             if data.get('email') != data.get('recipient_email'):
                 recipients.append(data.get('recipient_email'))
+        context = {
+            'order_type': '',
+            'data': data
+        }
+        subject = render_to_string('email/orders/order_letter_subject.txt', context)
+        body = render_to_string('email/orders/order_letter_body.txt', context)
         send_mail(
-            'Інформація',
-            'Тіло листа',
+            subject,
+            body,
             'test@gmail.com',
             recipients
         )

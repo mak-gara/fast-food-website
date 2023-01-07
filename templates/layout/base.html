@@ -47,8 +47,8 @@
                         </li>
                     </ul>
                     <div class="cart nav__cart">
-                        <div class="cart__icon">
-                            <a href="{% url 'cart:cart' %}"><img src="{% static 'img/icons/cart.svg' %}" alt="cart"></a>
+                        <div class="pushmenu cart__icon">
+                            <a href="#!"><img src="{% static 'img/icons/cart.svg' %}" alt="cart"></a>
                             {% if cart.get_count != 0 %}
                             <div class="cart__quantity">
                                 {{ cart.get_count }}
@@ -68,6 +68,53 @@
         {% endblock %}
         <!-- End Header -->
 
+        <!-- Sidebar -->
+        {% block sidebar %}
+        <div class="sidebar">
+            <div class="sidebar_container">
+                <div class="sidebar-title">Кошик</div>
+                <div class="item-list">
+                    {% for item in cart.items.all %}
+                    <div class="cart-item">
+                        <div class="product-img">
+                            <img src="{{ item.product.image.url }}" alt="{{ item.product.title }}">
+                        </div>
+                        <div class="description">
+                            <div class="product-name"><a class="item-title">{{ item.product.title }}</a></div>
+                            <div class="product-count">
+                                <div class="remove-product">
+                                    <a href="#!"><img class="btn-remove" src="{% static 'img/icons/rem.png' %}" alt="remove product"></a>
+                                </div>
+                                <input class="count" type="text" value="1" readonly>
+                                <div class="add-product">
+                                    <a href="#!"><img src="{% static 'img/icons/add.png' %}" alt="add to cart"></a>
+                                </div>
+                            </div>
+                            <div class="product-price">
+                                {{ item.product.price }} грн
+                            </div>
+                        </div>
+                        <div class="remove-cart">
+                            <a href="#!"><img src="{% static 'img/icons/remove.png' %}" alt="remove from cart"></a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="popup-summary">
+                    <div class="full-price">
+                        <span>Сума:</span>
+                        <span>{{ cart.get_total_price }} грн</span>
+                    </div>
+                    <div class="checkout">
+                        <a class="btn-checkout" href="#!">Оформити</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hidden-overley"></div>
+        {% endblock %}
+        <!-- End Sidebar -->
+
         <!-- Content -->
         <main class="main">
             {% block content %}{% endblock %}
@@ -81,7 +128,8 @@
             <div class="container footer__container">
                 <div class="footer__about">
                     <div class="logo footer__logo">
-                        <a href="{% url 'store:home' %}"><img src="{% static 'img/logo/logo.svg' %}" alt="BestBurger"></a>
+                        <a href="{% url 'store:home' %}"><img src="{% static 'img/logo/logo.svg' %}"
+                                alt="BestBurger"></a>
                     </div>
                     <div class="footer__copyright">
                         © 2002 - 2022 BEST BURGER<br>
@@ -143,7 +191,8 @@
     </div>
 
     <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
-    <script src="{% static 'js/main.js' %}"></script>
+    <script src="{% static 'js/sliders.js' %}"></script>
+    <script src="{% static 'js/cart.js' %}"></script>
 </body>
 
 </html>
