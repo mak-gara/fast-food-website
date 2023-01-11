@@ -1,7 +1,87 @@
-<div class="container">
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="зберегти">
-    </form>
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="order main__order">
+    <div class="container order__container">
+        <div class="title order__title">Оформлення замовлення</div>
+        <div class="about-order">
+            <div class="form-container order__form-container">
+                <form action="{% url 'orders:pick_up_order' %}" method="post" class="order-form">
+                    {% csrf_token %}
+                    <div class="personal-info">
+                        <div class="form-title">Особиста інформація</div>
+                        <div class="field">
+                            {{ form.customer_name.label_tag }}
+                            {{ form.customer_name }}
+                        </div>
+                        <div class="field">
+                            {{ form.phone_number.label_tag }}
+                            {{ form.phone_number }}
+                        </div>
+                        <div class="field">
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
+                        </div>
+                    </div>
+                    <div class="delivery">
+                        <div class="form-title">Доставка</div>
+                        <div class="field">
+                            {{ form.store.label_tag }}
+                            {{ form.store }}
+                        </div>
+                    </div>
+                    <div class="payment">
+                        <div class="form-title">Оплата</div>
+                        <div class="field">
+                            {{ form.payment.label_tag }}
+                            {{ form.payment }}
+                        </div>
+                    </div>
+                    <div class="comment">
+                        <div class="form-title">Коментар до замовлення</div>
+                        <div class="field">
+                            {{ form.comment }}
+                        </div>
+                    </div>
+                    <button type="submit">Замовити</button>
+                </form>
+            </div>
+            <div class="order-content order__order-content">
+                <ul class="order-content__list">
+                    {% for item in cart.items.all %}
+                    <li class="order-content__item">
+                        <div class="cart-item">
+                            <div class="product-img">
+                                <img src="{{ item.product.image.url }}" alt="{{ item.product.title }}">
+                            </div>
+                            <div class="description">
+                                <div class="product-name"><a class="item-title">{{ item.product.title }}</a></div>
+                                <div class="product-count">
+                                    <div class="remove-product">
+                                        <a href=""><img class="btn-remove" src="{% static 'img/icons/rem.png' %}" alt="decrease quantity"></a>
+                                    </div>
+                                    <input class="count" type="text" value="{{ item.quantity }}" readonly>
+                                    <div class="add-product">
+                                        <a href=""><img src="{% static 'img/icons/add.png' %}" alt="increase quantity"></a>
+                                    </div>
+                                </div>
+                                <div class="product-price">
+                                    {{ item.product.price }} грн
+                                </div>
+                            </div>
+                            <div class="remove-cart">
+                                <a href=""><img src="{% static 'img/icons/remove.png' %}" alt="remove from cart"></a>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <div class="order-content__full-price">
+                    До оплати:<span>{{ cart.get_total_price }} грн</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+{% endblock %}

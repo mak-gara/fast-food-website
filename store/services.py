@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, get_list_or_404
 from random import randint
 
-from .models import Category, PopularCategory, Product, Recommendation, SliderItem, PopularProduct
+from .models import Category, PopularCategory, Product, Recommendation, SliderItem, PopularProduct, Store
 
 
 # Category model
@@ -40,12 +40,15 @@ def get_active_recommendations():
 
     return Recommendation.objects.filter(is_active=True, item__is_active=True, item__categories__is_active=True).distinct()
 
+
 def get_active_popular_products():
     '''Function to get popular products'''
 
     return PopularProduct.objects.filter(is_active=True, item__is_active=True, item__categories__is_active=True).distinct()
 
 # Product model
+
+
 def get_active_products():
     '''Function to get active products'''
 
@@ -83,3 +86,7 @@ def get_active_slides(amount='all'):
         return slides
     else:
         return slides[:amount]
+
+
+def get_active_stores():
+    return Store.objects.filter(is_active=True)

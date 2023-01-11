@@ -5,7 +5,7 @@ from .models import PickUpOrder, DeliveryOrder
 
 @admin.register(PickUpOrder)
 class PickUpOrderAdmin(admin.ModelAdmin):
-    list_display = [
+    list_display = (
         'id',
         'customer_name',
         'phone_number',
@@ -14,19 +14,19 @@ class PickUpOrderAdmin(admin.ModelAdmin):
         'payment',
         'is_active',
         'created_at'
-    ]
-    list_filter = [
+    )
+    list_filter = (
         'created_at',
         'is_active'
-    ]
-    list_editable = [
-        'is_active'
-    ]
+    )
+    list_editable = (
+        'is_active',
+    )
 
 
 @admin.register(DeliveryOrder)
 class DeliveryOrderAdmin(admin.ModelAdmin):
-    list_display = [
+    list_display = (
         'id',
         'customer_name',
         'phone_number',
@@ -42,15 +42,16 @@ class DeliveryOrderAdmin(admin.ModelAdmin):
         'payment',
         'is_active',
         'created_at'
-    ]
-    list_filter = [
+    )
+    list_filter = (
         'created_at',
         'is_active'
-    ]
-    list_editable = [
-        'is_active'
-    ]
-    readonly_fields = ('id', 'created_at')
+    )
+    list_editable = ('is_active',)
+    readonly_fields = (
+        'id',
+        'created_at'
+    )
     fieldsets = (
         ('Інформація про замовлення', {
             'fields': (('id', 'created_at'), 'is_active')

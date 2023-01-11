@@ -3,8 +3,7 @@ from django.shortcuts import redirect
 from django.views.generic import CreateView, TemplateView
 
 from .forms import PickUpOrderForm, DeliveryOrderForm
-from cart.services import get_cart
-from .services import hide_cart
+from cart.services import get_cart, hide_cart
 
 
 class CreateOrderMixin:
@@ -38,5 +37,5 @@ class DeliveryOrderView(CreateOrderMixin, CreateView):
     success_url = reverse_lazy('store:home')
 
 
-class EmptyCartView(CreateOrderMixin, TemplateView):
+class EmptyCartView(TemplateView):
     template_name = 'orders/empty-cart.html'

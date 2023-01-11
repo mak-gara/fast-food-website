@@ -12,9 +12,10 @@ def get_cart(request):
     or anonymous user. If the cart does not exist,
     it will be created
     '''
-    
+
     if request.user.is_authenticated:
-        cart = Cart.objects.get_or_create(user=request.user, is_ordered=False)[0]
+        cart = Cart.objects.get_or_create(
+            user=request.user, is_ordered=False)[0]
         return cart
     else:
         if not request.session.session_key:
@@ -29,7 +30,7 @@ def get_cart_or_404(user):
     Function to receive the cart. If the cart does not exist,
     a Http404() exception will be thrown
     '''
-    
+
     return get_object_or_404(Cart, user=user)
 
 
@@ -105,3 +106,10 @@ def remove_item_from_cart(cart, item):
 
     cart.items.remove(item)
     item.delete()
+
+
+def hide_cart(cart):
+    '''Function of hiding the cart'''
+
+    cart.is_ordered = True
+    cart.save()
