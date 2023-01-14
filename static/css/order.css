@@ -81,6 +81,11 @@
     color: #FFFFFF;
 }
 
+.errorlist {
+    font-weight: 500;
+    color: #ff5555;
+}
+
 .order-content__list {
     margin-bottom: 23px;
 }
