@@ -70,6 +70,23 @@
     color: #737373;
 }
 
+.field textarea::-webkit-scrollbar {
+    width: 15px;
+    background-color: none;
+    /* border: 5px solid transparent; */
+}
+
+.field textarea::-webkit-scrollbar-thumb {
+    border: 5px solid transparent;
+    border-radius: 10px;
+    background: rgba(140, 159, 63, 0.7);
+    background-clip: content-box;
+}
+
+.field textarea::-webkit-scrollbar-track {
+    background-color: none;
+}
+
 .order-form button {
     align-self: center;
     width: 218px;
