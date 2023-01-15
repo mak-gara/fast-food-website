@@ -63,6 +63,16 @@ class Product(models.Model):
 
         return reverse_lazy('cart:add_to_cart', args=[self.slug])
 
+    def get_remove_from_cart_url(self):
+        '''Function to get URL to remove from cart'''
+
+        return reverse_lazy('cart:remove_from_cart', args=[self.slug])
+
+    def get_reduse_cart_item_quantity_url(self):
+        '''Function to get URL to reduse cart item quantity'''
+
+        return reverse_lazy('cart:requse_quantity', args=[self.slug])
+
     def get_absolute_url(self):
         return reverse_lazy('store:product', args=[self.slug])
 

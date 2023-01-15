@@ -58,29 +58,7 @@
                 <ul class="order-content__list">
                     {% for item in cart.items.all %}
                     <li class="order-content__item">
-                        <div class="cart-item">
-                            <div class="product-img">
-                                <img src="{{ item.product.image.url }}" alt="{{ item.product.title }}">
-                            </div>
-                            <div class="description">
-                                <div class="product-name"><a class="item-title">{{ item.product.title }}</a></div>
-                                <div class="product-count">
-                                    <div class="remove-product">
-                                        <a href=""><img class="btn-remove" src="{% static 'img/icons/rem.png' %}" alt="decrease quantity"></a>
-                                    </div>
-                                    <input class="count" type="text" value="{{ item.quantity }}" readonly>
-                                    <div class="add-product">
-                                        <a href=""><img src="{% static 'img/icons/add.png' %}" alt="increase quantity"></a>
-                                    </div>
-                                </div>
-                                <div class="product-price">
-                                    {{ item.product.price }} грн
-                                </div>
-                            </div>
-                            <div class="remove-cart">
-                                <a href=""><img src="{% static 'img/icons/remove.png' %}" alt="remove from cart"></a>
-                            </div>
-                        </div>
+                        {% include 'include/cart-item.html' %}
                     </li>
                     {% endfor %}
                 </ul>

@@ -75,29 +75,7 @@
                 <div class="sidebar-title">Кошик</div>
                 <div class="item-list">
                     {% for item in cart.items.all %}
-                    <div class="cart-item">
-                        <div class="product-img">
-                            <img src="{{ item.product.image.url }}" alt="{{ item.product.title }}">
-                        </div>
-                        <div class="description">
-                            <div class="product-name"><a class="item-title">{{ item.product.title }}</a></div>
-                            <div class="product-count">
-                                <div class="remove-product">
-                                    <a href="#!"><img class="btn-remove" src="{% static 'img/icons/rem.png' %}" alt="remove product"></a>
-                                </div>
-                                <input class="count" type="text" value="1" readonly>
-                                <div class="add-product">
-                                    <a href="#!"><img src="{% static 'img/icons/add.png' %}" alt="add to cart"></a>
-                                </div>
-                            </div>
-                            <div class="product-price">
-                                {{ item.product.price }} грн
-                            </div>
-                        </div>
-                        <div class="remove-cart">
-                            <a href="#!"><img src="{% static 'img/icons/remove.png' %}" alt="remove from cart"></a>
-                        </div>
-                    </div>
+                    {% include 'include/cart-item.html' %}
                     {% endfor %}
                 </div>
                 <div class="popup-summary">

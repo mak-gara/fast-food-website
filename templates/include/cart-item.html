@@ -1,0 +1,24 @@
+{% load static %}
+<div class="cart-item" id="{{ item.product.slug }}">
+    <div class="product-img">
+        <img src="{{ item.product.image.url }}" alt="{{ item.product.title }}">
+    </div>
+    <div class="description">
+        <div class="product-name"><a class="item-title">{{ item.product.title }}</a></div>
+        <div class="product-count">
+            <div class="remove-product">
+                <a href="{{ item.product.get_reduse_cart_item_quantity_url }}"><img class="btn-remove" src="{% static 'img/icons/rem.png' %}" alt="remove product"></a>
+            </div>
+            <input class="count" type="text" value="{{ item.quantity }}" readonly>
+            <div class="add-product">
+                <a href="{{ item.product.get_add_to_cart_url }}"><img src="{% static 'img/icons/add.png' %}" alt="add to cart"></a>
+            </div>
+        </div>
+        <div class="product-price">
+            {{ item.get_final_price }} грн
+        </div>
+    </div>
+    <div class="remove-cart">
+        <a href="{{ item.product.get_remove_from_cart_url }}"><img src="{% static 'img/icons/remove.png' %}"></a>
+    </div>
+</div>

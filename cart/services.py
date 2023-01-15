@@ -60,6 +60,7 @@ def create_item_and_add_to_cart(cart, slug, quantity=1):
     item = CartItem.objects.create(
         product=get_active_product_by_slug(slug), quantity=quantity)
     cart.items.add(item)
+    return item
 
 
 def increase_item_quantity(item, quantity=1):
