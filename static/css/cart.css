@@ -1,6 +1,70 @@
 body.sidebar-opened {overflow:hidden;}
 
-.hidden-overley {
+.button-delivery svg {
+  margin: 0 auto;
+}
+
+.button-delivery a:hover {
+  background-color: #8C9F3F;
+  color: white;
+}
+
+.button-delivery-content:hover .button-delivery-icon {
+  fill: white;
+}
+
+
+.button-delivery-content {
+  display: grid;
+  grid-gap: 8px;
+  color: #333;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  background-color: white;
+  padding: 40px 90px;
+  border-radius: 10px;
+}
+
+.hidden-overley2 {
+  position: fixed;
+  left: 0;
+  z-index: 101;
+  background: #000000;
+  opacity:0;
+  width:0;
+  height:0;
+  transition: opacity 1s;
+}
+
+.hidden-overley2.show {
+  height: 100%;
+  width: 100%;
+  opacity:0.75;
+  transition: opacity 1s;
+}
+
+.cart-button {
+  position: fixed;
+  z-index:102;
+  width: 0;
+  height: 0;
+  overflow: auto;
+}
+
+.cart-button.show {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-gap: 120px;
+}
+
+
+.hidden-overley1 {
   position: fixed;
   left: 0;
   z-index: 99;
@@ -11,7 +75,7 @@ body.sidebar-opened {overflow:hidden;}
   transition: opacity 1s;
 }
 
-.hidden-overley.show {
+.hidden-overley1.show {
   height: 100%;
   width: 100%;
   opacity:0.5;

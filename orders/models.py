@@ -6,7 +6,7 @@ from cart.models import Cart
 
 class Order(models.Model):
     PAYMENT = (
-        ('cash', 'Оплата готівкою'),
+        ('cash', 'Готівкою'),
     )
     cart = models.OneToOneField(
         Cart, on_delete=models.PROTECT, verbose_name='Кошик')

@@ -12,7 +12,7 @@ def send_pick_up_order_info(sender, **kwargs):
     subject = render_to_string(
         'email/orders/order_letter_subject.txt', {'order': order})
     body = render_to_string(
-        'email/orders/order_letter_body.txt', {'order': order})
+        'email/orders/pick_up_order_letter_body.txt', {'order': order})
     send_mail(
         subject,
         body,
@@ -27,7 +27,7 @@ def send_delivery_order_info(sender, **kwargs):
     subject = render_to_string(
         'email/orders/order_letter_subject.txt', {'order': order})
     body = render_to_string(
-        'email/orders/order_letter_body.txt', {'order': order})
+        'email/orders/delivery_order_letter_body.txt', {'order': order})
 
     recipients = [order.email]
     if order.recipient_email != order.email:

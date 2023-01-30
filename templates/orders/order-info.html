@@ -1,0 +1,35 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="order-info main__order-info">
+    <div class="order-info__icon">
+        <img src="{% static 'img/icons/order.svg' %}" alt="order-icon">
+    </div>
+    <div class="order-info__number title">Замовлення №{{ order.id }}</div>
+    <ul class="order-info__list">
+        <li class="order-info__item">
+            <div class="order-info__property text">Замовник:</div>
+            <div class="order-info__value text">{{ order.customer_name }}</div>
+        </li>
+        <li class="order-info__item">
+            <div class="order-info__property text">Номер телефону:</div>
+            <div class="order-info__value text">{{ order.phone_number }}</div>
+        </li>
+        <li class="order-info__item">
+            <div class="order-info__property text">Електронна адреса:</div>
+            <div class="order-info__value text">{{ order.email }}</div>
+        </li>
+        {% if order.store %}
+        <li class="order-info__item">
+            <div class="order-info__property text">Магазин:</div>
+            <div class="order-info__value text">{{ order.store }}</div>
+        </li>
+        {% endif %}
+        <li class="order-info__item">
+            <div class="order-info__property text">Спосіб оплати:</div>
+            <div class="order-info__value text">{{ order.get_payment_display }}</div>
+        </li>
+    </ul>
+</div>
+{% endblock %}

@@ -132,7 +132,6 @@ class Collection(models.Model):
 
     class Meta:
         abstract = True
-        ordering = ('sequence_number',)
 
 
 class Recommendation(Collection):
@@ -142,6 +141,7 @@ class Recommendation(Collection):
         Product, on_delete=models.CASCADE, verbose_name='Продукт')
 
     class Meta:
+        ordering = ('sequence_number',)
         verbose_name = 'Рекомендація'
         verbose_name_plural = 'Рекомендації'
 
@@ -156,6 +156,7 @@ class PopularProduct(Collection):
         Product, on_delete=models.CASCADE, verbose_name='Продукт')
 
     class Meta:
+        ordering = ('sequence_number',)
         verbose_name = 'Популярний продукт'
         verbose_name_plural = 'Популярні продукти'
 
@@ -170,6 +171,7 @@ class PopularCategory(Collection):
         Category, on_delete=models.CASCADE, verbose_name='Категорія')
 
     class Meta:
+        ordering = ('sequence_number',)
         verbose_name = 'Популярна категорія'
         verbose_name_plural = 'Популярні категорії'
 
